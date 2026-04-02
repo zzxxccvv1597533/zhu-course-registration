@@ -463,29 +463,65 @@
 
   </main>
 
+  <!-- Login Overlay -->
+  <div id="loginOverlay" style="display:none; position:fixed; inset:0; z-index:9999; background:var(--bg); display:flex; align-items:center; justify-content:center;">
+    <div style="background:var(--white); border-radius:20px; padding:40px 36px; width:100%; max-width:380px; border:1px solid var(--sand); margin:20px;">
+      <h2 style="font-size:20px; font-weight:900; margin-bottom:4px;">管理後台登入</h2>
+      <p style="font-size:13px; color:var(--stone); margin-bottom:24px;">小朱正課 &middot; 5/9 一日實戰班</p>
+      <div style="margin-bottom:16px;">
+        <label style="display:block; font-size:12px; font-weight:700; margin-bottom:6px; color:var(--graphite);">帳號</label>
+        <input id="loginUser" type="text" placeholder="帳號" style="width:100%; padding:12px 16px; border:1.5px solid var(--sand); border-radius:10px; font-size:15px; font-family:inherit; background:var(--bg);">
+      </div>
+      <div style="margin-bottom:20px;">
+        <label style="display:block; font-size:12px; font-weight:700; margin-bottom:6px; color:var(--graphite);">密碼</label>
+        <input id="loginPass" type="password" placeholder="密碼" style="width:100%; padding:12px 16px; border:1.5px solid var(--sand); border-radius:10px; font-size:15px; font-family:inherit; background:var(--bg);">
+      </div>
+      <p id="loginError" style="display:none; color:var(--coral); font-size:13px; font-weight:600; margin-bottom:12px;">帳號或密碼錯誤</p>
+      <button onclick="doLogin()" style="width:100%; padding:14px; background:var(--ink); color:var(--white); border:none; border-radius:10px; font-size:15px; font-weight:800; cursor:pointer; font-family:inherit;">登入</button>
+    </div>
+  </div>
+
   <script>
     let ALL = [];
     let currentFilter = 'all';
-    let ADMIN_KEY = localStorage.getItem('admin_key') || '';
+    let ADMIN_USER = localStorage.getItem('admin_user') || '';
+    let ADMIN_PASS = localStorage.getItem('admin_pass') || '';
 
-    // Prompt for admin key if not stored
-    if (!ADMIN_KEY) {
-      ADMIN_KEY = prompt('請輸入管理員密碼：') || '';
-      if (ADMIN_KEY) localStorage.setItem('admin_key', ADMIN_KEY);
+    // Show login if no credentials stored
+    if (!ADMIN_USER || !ADMIN_PASS) {
+      document.getElementById('loginOverlay').style.display = 'flex';
+    }
+
+    document.getElementById('loginPass').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+
+    function doLogin() {
+      ADMIN_USER = document.getElementById('loginUser').value.trim();
+      ADMIN_PASS = document.getElementById('loginPass').value.trim();
+      if (!ADMIN_USER || !ADMIN_PASS) return;
+      localStorage.setItem('admin_user', ADMIN_USER);
+      localStorage.setItem('admin_pass', ADMIN_PASS);
+      document.getElementById('loginError').style.display = 'none';
+      loadData();
     }
 
     function authHeaders(extra = {}) {
-      return { 'X-Admin-Key': ADMIN_KEY, ...extra };
+      return { 'X-Admin-User': ADMIN_USER, 'X-Admin-Pass': ADMIN_PASS, ...extra };
+    }
+
+    function showLogin(msg) {
+      document.getElementById('loginOverlay').style.display = 'flex';
+      if (msg) document.getElementById('loginError').style.display = 'block';
     }
 
     async function loadData() {
       try {
         const res = await fetch('/api/registrations', { headers: authHeaders() });
         if (res.status === 401) {
-          ADMIN_KEY = prompt('密碼錯誤，請重新輸入管理員密碼：') || '';
-          localStorage.setItem('admin_key', ADMIN_KEY);
-          return loadData();
+          localStorage.removeItem('admin_user');
+          localStorage.removeItem('admin_pass');
+          return showLogin(true);
         }
+        document.getElementById('loginOverlay').style.display = 'none';
         const json = await res.json();
         ALL = json.data || [];
         updateStats(json.stats);
@@ -609,7 +645,7 @@
     }
 
     function exportCSV() {
-      window.open('/api/export?key=' + encodeURIComponent(ADMIN_KEY));
+      window.open('/api/export?user=' + encodeURIComponent(ADMIN_USER) + '&pass=' + encodeURIComponent(ADMIN_PASS));
     }
 
     loadData();

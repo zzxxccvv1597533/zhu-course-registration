@@ -4,7 +4,8 @@ const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const ADMIN_KEY = process.env.ADMIN_KEY || 'zhu2026';
+const ADMIN_USER = process.env.ADMIN_USER || 'zhuwax001';
+const ADMIN_PASS = process.env.ADMIN_PASS || 'a123456789';
 const DEADLINE = new Date('2026-04-06T23:59:59+08:00').getTime();
 const CAPACITY = 20;
 const PRICE = 16800;
@@ -45,9 +46,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Admin auth middleware
 function adminAuth(req, res, next) {
-  const token = req.headers['x-admin-key'] || req.query.key;
-  if (token !== ADMIN_KEY) {
-    return res.status(401).json({ error: '需要管理員權限' });
+  const user = req.headers['x-admin-user'] || req.query.user;
+  const pass = req.headers['x-admin-pass'] || req.query.pass;
+  if (user !== ADMIN_USER || pass !== ADMIN_PASS) {
+    return res.status(401).json({ error: '帳號或密碼錯誤' });
   }
   next();
 }
@@ -204,5 +206,5 @@ app.get('/admin', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
   console.log(`Admin panel: http://localhost:${PORT}/admin`);
-  console.log(`Admin key: ${ADMIN_KEY}`);
+  console.log(`Admin login: ${ADMIN_USER} / ${'*'.repeat(ADMIN_PASS.length)}`);
 });
