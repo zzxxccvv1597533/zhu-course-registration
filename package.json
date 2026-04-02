@@ -1,0 +1,14 @@
+{
+  "name": "zhu-course-registration",
+  "version": "1.0.0",
+  "description": "小朱 新媒體商業獲利學 報名系統",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.7.0",
+    "express": "^4.21.0"
+  }
+}

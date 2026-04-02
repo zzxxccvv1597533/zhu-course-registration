@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>小朱正課｜報名後台</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F6F4F0;
+      --white: #FFFFFF;
+      --ink: #121010;
+      --charcoal: #2C2824;
+      --graphite: #5C574F;
+      --stone: #9C9588;
+      --sand: #E2DCD4;
+      --light: #EFECE8;
+      --amber: #C69214;
+      --amber-soft: #FFF8E7;
+      --green: #2D8B56;
+      --green-soft: #EDF7F1;
+      --coral: #D4553A;
+      --coral-soft: #FDF0ED;
+      --blue: #3B6FD4;
+      --blue-soft: #EBF0FA;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', 'Noto Sans TC', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    .nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--sand);
+      padding: 0 32px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav-logo {
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: -0.3px;
+    }
+
+    .nav-badge {
+      background: var(--amber-soft);
+      color: var(--amber);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 100px;
+    }
+
+    .nav-actions { display: flex; gap: 8px; }
+
+    .btn {
+      padding: 8px 16px;
+      border: 1px solid var(--sand);
+      background: var(--white);
+      color: var(--charcoal);
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn:hover { border-color: var(--ink); }
+
+    .btn-dark {
+      background: var(--ink);
+      color: var(--white);
+      border-color: var(--ink);
+    }
+
+    .btn-dark:hover { background: #000; }
+
+    /* MAIN */
+    .main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px 32px 48px;
+    }
+
+    /* STATS */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid var(--sand);
+    }
+
+    .stat-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--stone);
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .stat-row {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 40px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .stat-sub {
+      font-size: 14px;
+      color: var(--stone);
+    }
+
+    .stat-accent .stat-num { color: var(--amber); }
+
+    /* Progress bar */
+    .progress-bar {
+      margin-top: 12px;
+      height: 6px;
+      background: var(--light);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--amber);
+      border-radius: 3px;
+      transition: width 0.5s;
+    }
+
+    /* TABLE */
+    .table-card {
+      background: var(--white);
+      border-radius: 16px;
+      border: 1px solid var(--sand);
+      overflow: hidden;
+    }
+
+    .table-toolbar {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--light);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .table-title {
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .filters {
+      display: flex;
+      gap: 4px;
+    }
+
+    .filter-chip {
+      padding: 6px 14px;
+      background: transparent;
+      border: 1px solid var(--sand);
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      color: var(--graphite);
+      transition: all 0.15s;
+    }
+
+    .filter-chip:hover { border-color: var(--ink); }
+
+    .filter-chip.active {
+      background: var(--ink);
+      color: var(--white);
+      border-color: var(--ink);
+    }
+
+    .table-scroll { overflow-x: auto; }
+
+    table { width: 100%; border-collapse: collapse; min-width: 860px; }
+
+    th {
+      padding: 12px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: var(--stone);
+      text-align: left;
+      background: var(--bg);
+      border-bottom: 1px solid var(--sand);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 14px 16px;
+      font-size: 14px;
+      border-bottom: 1px solid var(--light);
+      white-space: nowrap;
+      vertical-align: middle;
+    }
+
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(0,0,0,0.015); }
+
+    .name-cell { font-weight: 700; }
+
+    .mono {
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.5px;
+    }
+
+    /* Status badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+      transition: all 0.15s;
+    }
+
+    .badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+    }
+
+    .badge-pending { background: var(--amber-soft); color: var(--amber); }
+    .badge-pending::before { background: var(--amber); }
+    .badge-confirmed { background: var(--green-soft); color: var(--green); }
+    .badge-confirmed::before { background: var(--green); }
+    .badge-cancelled { background: var(--coral-soft); color: var(--coral); }
+    .badge-cancelled::before { background: var(--coral); }
+
+    .track-chip {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .track-A { background: var(--blue-soft); color: var(--blue); }
+    .track-B { background: var(--amber-soft); color: var(--amber); }
+    .track-C { background: var(--green-soft); color: var(--green); }
+
+    /* Action menu */
+    .action-cell { position: relative; }
+
+    .action-btn {
+      width: 32px; height: 32px;
+      border: 1px solid var(--sand);
+      background: var(--white);
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: var(--stone);
+      transition: all 0.15s;
+    }
+
+    .action-btn:hover { border-color: var(--ink); color: var(--ink); }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 100%;
+      margin-top: 4px;
+      background: var(--white);
+      border: 1px solid var(--sand);
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      z-index: 50;
+      min-width: 140px;
+      overflow: hidden;
+    }
+
+    .dropdown.open { display: block; }
+
+    .dropdown-item {
+      display: block;
+      width: 100%;
+      padding: 10px 16px;
+      border: none;
+      background: none;
+      text-align: left;
+      font-size: 13px;
+      font-family: inherit;
+      cursor: pointer;
+      color: var(--charcoal);
+      transition: background 0.1s;
+    }
+
+    .dropdown-item:hover { background: var(--bg); }
+    .dropdown-item.danger { color: var(--coral); }
+    .dropdown-item.danger:hover { background: var(--coral-soft); }
+
+    /* Empty */
+    .empty {
+      text-align: center;
+      padding: 64px 24px;
+    }
+
+    .empty h3 {
+      font-size: 18px;
+      color: var(--charcoal);
+      margin-bottom: 6px;
+    }
+
+    .empty p { color: var(--stone); font-size: 14px; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .nav { padding: 0 16px; }
+      .main { padding: 16px; }
+      .stat-num { font-size: 32px; }
+    }
+
+    @media (max-width: 480px) {
+      .stats { grid-template-columns: 1fr; }
+      .nav-badge { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="nav-left">
+        <span class="nav-logo">小朱正課 Admin</span>
+        <span class="nav-badge">5/9 一日實戰班</span>
+      </div>
+      <div class="nav-actions">
+        <button class="btn" onclick="loadData()">&#8635; 重新整理</button>
+        <button class="btn" onclick="exportCSV()">&#8615; 匯出 CSV</button>
+        <a class="btn btn-dark" href="/" target="_blank">&#8599; 報名頁</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main">
+
+    <div class="stats">
+      <div class="stat-card stat-accent">
+        <div class="stat-label">報名人數</div>
+        <div class="stat-row">
+          <div class="stat-num" id="sTotal">0</div>
+          <div class="stat-sub">/ 20 名額</div>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">已確認匯款</div>
+        <div class="stat-row">
+          <div class="stat-num" id="sConfirmed">0</div>
+        </div>
+        <div class="stat-sub" id="sConfirmedAmt" style="margin-top:4px">NT$0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">待確認</div>
+        <div class="stat-row">
+          <div class="stat-num" id="sPending">0</div>
+        </div>
+        <div class="stat-sub" id="sPendingAmt" style="margin-top:4px">NT$0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">剩餘名額</div>
+        <div class="stat-row">
+          <div class="stat-num" id="sRemaining">20</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-card">
+      <div class="table-toolbar">
+        <h2 class="table-title">報名清單</h2>
+        <div class="filters">
+          <button class="filter-chip active" onclick="filter('all',this)">全部</button>
+          <button class="filter-chip" onclick="filter('待確認',this)">待確認</button>
+          <button class="filter-chip" onclick="filter('已確認',this)">已確認</button>
+          <button class="filter-chip" onclick="filter('取消',this)">取消</button>
+        </div>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>姓名</th>
+              <th>手機</th>
+              <th>Email</th>
+              <th>LINE</th>
+              <th>路線</th>
+              <th>末五碼</th>
+              <th>匯款日期</th>
+              <th>狀態</th>
+              <th>備註</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+      <div class="empty" id="empty" style="display:none">
+        <h3>尚無報名資料</h3>
+        <p>報名頁有人提交後，資料會自動出現在這裡</p>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    let ALL = [];
+    let currentFilter = 'all';
+    let ADMIN_KEY = localStorage.getItem('admin_key') || '';
+
+    // Prompt for admin key if not stored
+    if (!ADMIN_KEY) {
+      ADMIN_KEY = prompt('請輸入管理員密碼：') || '';
+      if (ADMIN_KEY) localStorage.setItem('admin_key', ADMIN_KEY);
+    }
+
+    function authHeaders(extra = {}) {
+      return { 'X-Admin-Key': ADMIN_KEY, ...extra };
+    }
+
+    async function loadData() {
+      try {
+        const res = await fetch('/api/registrations', { headers: authHeaders() });
+        if (res.status === 401) {
+          ADMIN_KEY = prompt('密碼錯誤，請重新輸入管理員密碼：') || '';
+          localStorage.setItem('admin_key', ADMIN_KEY);
+          return loadData();
+        }
+        const json = await res.json();
+        ALL = json.data || [];
+        updateStats(json.stats);
+        render();
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    function updateStats(s) {
+      if (!s) return;
+      const total = s.total || 0;
+      const confirmed = s.confirmed || 0;
+      const pending = s.pending || 0;
+      document.getElementById('sTotal').textContent = total;
+      document.getElementById('sConfirmed').textContent = confirmed;
+      document.getElementById('sConfirmedAmt').textContent = 'NT$' + (confirmed * 16800).toLocaleString();
+      document.getElementById('sPending').textContent = pending;
+      document.getElementById('sPendingAmt').textContent = 'NT$' + (pending * 16800).toLocaleString();
+      document.getElementById('sRemaining').textContent = Math.max(0, 20 - confirmed);
+      document.getElementById('progressFill').style.width = Math.min(100, (total / 20) * 100) + '%';
+    }
+
+    function render() {
+      const data = currentFilter === 'all' ? ALL : ALL.filter(r => r.status === currentFilter);
+      const tbody = document.getElementById('tbody');
+      const empty = document.getElementById('empty');
+
+      if (data.length === 0) {
+        tbody.innerHTML = '';
+        empty.style.display = 'block';
+        return;
+      }
+      empty.style.display = 'none';
+
+      tbody.innerHTML = data.map((r, i) => {
+        const tl = (r.track || '').charAt(0);
+        const tc = ['A','B','C'].includes(tl) ? 'track-' + tl : '';
+        let bc = 'badge-pending';
+        if (r.status === '已確認') bc = 'badge-confirmed';
+        if (r.status === '取消') bc = 'badge-cancelled';
+
+        return `<tr>
+          <td style="color:var(--stone)">${r.id}</td>
+          <td class="name-cell">${esc(r.name)}</td>
+          <td class="mono">${esc(r.phone)}</td>
+          <td>${esc(r.email)}</td>
+          <td>${esc(r.line_id || '-')}</td>
+          <td><span class="track-chip ${tc}">${esc(r.track)}</span></td>
+          <td class="mono">${esc(r.transfer_last5)}</td>
+          <td>${esc(r.transfer_date)}</td>
+          <td><span class="badge ${bc}">${esc(r.status)}</span></td>
+          <td style="max-width:120px;overflow:hidden;text-overflow:ellipsis;color:var(--stone);font-size:12px">${esc(r.note || '')}</td>
+          <td class="action-cell">
+            <button class="action-btn" onclick="toggleMenu(event, ${r.id})">&#8942;</button>
+            <div class="dropdown" id="menu-${r.id}">
+              <button class="dropdown-item" onclick="setStatus(${r.id}, '已確認')">&#10003; 確認匯款</button>
+              <button class="dropdown-item" onclick="setStatus(${r.id}, '待確認')">&#8635; 改為待確認</button>
+              <button class="dropdown-item" onclick="addNote(${r.id})">&#9998; 加備註</button>
+              <button class="dropdown-item danger" onclick="setStatus(${r.id}, '取消')">&#10005; 取消報名</button>
+              <button class="dropdown-item danger" onclick="deleteReg(${r.id})">&#128465; 刪除</button>
+            </div>
+          </td>
+        </tr>`;
+      }).join('');
+    }
+
+    function filter(status, btn) {
+      currentFilter = status;
+      document.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      render();
+    }
+
+    function toggleMenu(e, id) {
+      e.stopPropagation();
+      document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
+      document.getElementById('menu-' + id).classList.toggle('open');
+    }
+
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
+    });
+
+    async function setStatus(id, status) {
+      const res = await fetch('/api/registrations/' + id, {
+        method: 'PATCH',
+        headers: authHeaders({ 'Content-Type': 'application/json' }),
+        body: JSON.stringify({ status })
+      });
+      if (!res.ok) alert('更新失敗');
+      loadData();
+    }
+
+    async function addNote(id) {
+      const note = prompt('輸入備註：');
+      if (note === null) return;
+      const res = await fetch('/api/registrations/' + id, {
+        method: 'PATCH',
+        headers: authHeaders({ 'Content-Type': 'application/json' }),
+        body: JSON.stringify({ note })
+      });
+      if (!res.ok) alert('更新失敗');
+      loadData();
+    }
+
+    async function deleteReg(id) {
+      if (!confirm('確定要刪除這筆報名？')) return;
+      const res = await fetch('/api/registrations/' + id, {
+        method: 'DELETE',
+        headers: authHeaders()
+      });
+      if (!res.ok) alert('刪除失敗');
+      loadData();
+    }
+
+    function esc(s) {
+      const d = document.createElement('div');
+      d.textContent = String(s || '');
+      return d.innerHTML;
+    }
+
+    function exportCSV() {
+      window.open('/api/export?key=' + encodeURIComponent(ADMIN_KEY));
+    }
+
+    loadData();
+    setInterval(loadData, 30000);
+  </script>
+
+</body>
+</html>

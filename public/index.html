@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>新媒體商業獲利學｜一日實戰班報名</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --white: #FFFFFF;
+      --off-white: #FAFAF8;
+      --ivory: #F4F2EE;
+      --sand: #E8E4DC;
+      --stone: #9C9588;
+      --graphite: #5C574F;
+      --charcoal: #2C2824;
+      --ink: #121010;
+      --amber: #C69214;
+      --amber-light: #F5E6B8;
+      --amber-glow: rgba(198,146,20,0.08);
+      --coral: #D4553A;
+      --coral-soft: #FDF0ED;
+      --green: #2D8B56;
+      --green-soft: #EDF7F1;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', 'Noto Sans TC', -apple-system, sans-serif;
+      background: var(--off-white);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ═══════════════════════════════
+       STICKY COUNTDOWN
+    ═══════════════════════════════ */
+    .countdown-bar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--ink);
+      color: var(--white);
+      padding: 12px 20px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .cd-timer {
+      display: inline-flex;
+      gap: 4px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .cd-unit {
+      background: rgba(255,255,255,0.1);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 800;
+      min-width: 32px;
+      text-align: center;
+    }
+
+    .cd-colon { opacity: 0.4; font-weight: 300; }
+
+    .cd-cta {
+      background: var(--amber);
+      color: var(--ink);
+      padding: 6px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+      transition: transform 0.2s;
+    }
+
+    .cd-cta:hover { transform: scale(1.04); }
+
+    /* ═══════════════════════════════
+       HERO
+    ═══════════════════════════════ */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 80vh;
+      background: var(--white);
+      overflow: hidden;
+    }
+
+    .hero-content {
+      padding: 80px 48px 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 560px;
+      margin-left: auto;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--amber-glow);
+      border: 1px solid var(--amber-light);
+      padding: 8px 16px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--amber);
+      width: fit-content;
+      margin-bottom: 28px;
+      opacity: 0; animation: fadeIn 0.6s 0.1s forwards;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--amber);
+      border-radius: 50%;
+    }
+
+    .hero h1 {
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: 48px;
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+      opacity: 0; animation: fadeIn 0.6s 0.2s forwards;
+    }
+
+    .hero h1 em {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--amber);
+      font-size: 42px;
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--graphite);
+      margin-bottom: 32px;
+      opacity: 0; animation: fadeIn 0.6s 0.35s forwards;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+      opacity: 0; animation: fadeIn 0.6s 0.5s forwards;
+    }
+
+    .hero-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hm-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: var(--ivory);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .hm-text { font-size: 14px; }
+    .hm-text strong { display: block; font-weight: 700; }
+    .hm-text span { color: var(--stone); font-size: 12px; }
+
+    .hero-photo {
+      position: relative;
+      overflow: hidden;
+      background: var(--ivory);
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 15%;
+      opacity: 0; animation: fadeIn 0.8s 0.3s forwards;
+    }
+
+    .hero-photo-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 32px;
+      background: linear-gradient(transparent, rgba(18,16,16,0.85));
+      color: var(--white);
+    }
+
+    .hero-photo-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 900;
+    }
+
+    .hero-photo-role {
+      font-size: 14px;
+      opacity: 0.7;
+      margin-top: 4px;
+    }
+
+    /* ═══════════════════════════════
+       STATS STRIP
+    ═══════════════════════════════ */
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: var(--ink);
+      color: var(--white);
+    }
+
+    .strip-stat {
+      padding: 28px 20px;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .strip-stat:last-child { border-right: none; }
+
+    .strip-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .strip-label {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      margin-top: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    /* ═══════════════════════════════
+       SECTIONS
+    ═══════════════════════════════ */
+    .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+    .section { padding: 72px 0; }
+
+    .sec-eyebrow {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 12px;
+    }
+
+    .sec-title {
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: 32px;
+      font-weight: 900;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+
+    .sec-desc {
+      font-size: 16px;
+      color: var(--graphite);
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+
+    /* ═══════════════════════════════
+       TRACKS
+    ═══════════════════════════════ */
+    .tracks-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .track-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 32px;
+      border: 1px solid var(--sand);
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 20px;
+      transition: all 0.3s;
+      cursor: default;
+    }
+
+    .track-card:hover {
+      border-color: var(--amber);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+      transform: translateY(-2px);
+    }
+
+    .track-letter {
+      width: 56px; height: 56px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--white);
+    }
+
+    .track-card:nth-child(1) .track-letter { background: linear-gradient(135deg, #3B82F6, #1D4ED8); }
+    .track-card:nth-child(2) .track-letter { background: linear-gradient(135deg, #F59E0B, #D97706); }
+    .track-card:nth-child(3) .track-letter { background: linear-gradient(135deg, #10B981, #059669); }
+
+    .track-body h4 {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .track-body .tag {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--stone);
+      margin-bottom: 8px;
+    }
+
+    .track-body p {
+      font-size: 14px;
+      color: var(--graphite);
+      line-height: 1.7;
+    }
+
+    /* ═══════════════════════════════
+       PRICING
+    ═══════════════════════════════ */
+    .pricing {
+      background: var(--white);
+      border: 2px solid var(--ink);
+      border-radius: 24px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .pricing-header {
+      background: var(--ink);
+      color: var(--white);
+      padding: 16px 32px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    .pricing-body {
+      padding: 48px 32px;
+      text-align: center;
+    }
+
+    .pricing-old {
+      font-size: 16px;
+      color: var(--stone);
+      text-decoration: line-through;
+      text-decoration-color: var(--coral);
+    }
+
+    .pricing-amount {
+      font-family: 'Playfair Display', serif;
+      font-size: 80px;
+      font-weight: 900;
+      line-height: 1;
+      margin: 8px 0;
+      letter-spacing: -2px;
+    }
+
+    .pricing-amount .cur {
+      font-size: 32px;
+      vertical-align: super;
+      font-weight: 700;
+    }
+
+    .pricing-sub {
+      font-size: 15px;
+      color: var(--stone);
+      margin-bottom: 28px;
+    }
+
+    .pricing-pills {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .pricing-pill {
+      background: var(--ivory);
+      padding: 8px 18px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .spots-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--coral-soft);
+      color: var(--coral);
+      padding: 10px 24px;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .spots-tag::before {
+      content: '';
+      width: 8px; height: 8px;
+      background: var(--coral);
+      border-radius: 50%;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .pricing-cta {
+      display: block;
+      margin: 28px 32px 0;
+      padding: 18px;
+      background: var(--ink);
+      color: var(--white);
+      border-radius: 14px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: 800;
+      transition: all 0.2s;
+      letter-spacing: 0.5px;
+    }
+
+    .pricing-cta:hover {
+      background: #000;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    .pricing-footer {
+      padding: 0 32px 32px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--stone);
+    }
+
+    /* ═══════════════════════════════
+       FORM
+    ═══════════════════════════════ */
+    .form-card {
+      background: var(--white);
+      border: 1px solid var(--sand);
+      border-radius: 24px;
+      padding: 44px 36px;
+    }
+
+    .form-group { margin-bottom: 22px; }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .form-group label .req { color: var(--coral); }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 14px 18px;
+      background: var(--off-white);
+      border: 1.5px solid var(--sand);
+      border-radius: 12px;
+      color: var(--ink);
+      font-size: 16px;
+      font-family: inherit;
+      transition: all 0.2s;
+      line-height: 1.5;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--ink);
+      background: var(--white);
+      box-shadow: 0 0 0 4px rgba(18,16,16,0.04);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--stone); }
+
+    .form-group select {
+      appearance: none;
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239C9588' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+    }
+
+    .form-sep {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 32px 0;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      color: var(--stone);
+    }
+
+    .form-sep::before, .form-sep::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--sand);
+    }
+
+    .bank-box {
+      background: linear-gradient(135deg, #FFFBF0 0%, #FFF8E7 100%);
+      border: 1px solid var(--amber-light);
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 24px;
+    }
+
+    .bank-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--amber);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .bank-title svg { width: 18px; height: 18px; }
+
+    .bank-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(198,146,20,0.1);
+    }
+
+    .bank-row:last-of-type { border-bottom: none; }
+    .bank-k { font-size: 14px; color: var(--graphite); }
+
+    .bank-v {
+      font-size: 15px;
+      font-weight: 700;
+      user-select: all;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .bank-hint {
+      text-align: center;
+      font-size: 12px;
+      color: var(--amber);
+      font-weight: 600;
+      margin-top: 14px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 18px;
+      background: var(--ink);
+      color: var(--white);
+      border: none;
+      border-radius: 14px;
+      font-size: 17px;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+      letter-spacing: 0.5px;
+    }
+
+    .submit-btn:hover {
+      background: #000;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    .submit-btn:active { transform: translateY(0); }
+    .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    .form-note {
+      text-align: center;
+      font-size: 13px;
+      color: var(--stone);
+      margin-top: 14px;
+    }
+
+    /* ═══════════════════════════════
+       SUCCESS
+    ═══════════════════════════════ */
+    .success-panel {
+      display: none;
+      text-align: center;
+      padding: 56px 32px;
+      background: var(--white);
+      border: 1px solid var(--sand);
+      border-radius: 24px;
+    }
+
+    .success-panel.show { display: block; animation: fadeIn 0.5s forwards; }
+
+    .success-icon {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: var(--green-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+    }
+
+    .success-icon svg {
+      width: 36px; height: 36px;
+      stroke: var(--green);
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .success-panel h2 {
+      font-size: 26px;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .success-panel p {
+      font-size: 15px;
+      color: var(--graphite);
+      line-height: 1.8;
+    }
+
+    .line-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 24px;
+      background: #06C755;
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .line-btn:hover { background: #05a648; transform: translateY(-1px); }
+
+    /* ═══════════════════════════════
+       FOOTER
+    ═══════════════════════════════ */
+    .footer {
+      text-align: center;
+      padding: 48px 24px;
+      background: var(--ink);
+      color: rgba(255,255,255,0.4);
+      font-size: 13px;
+    }
+
+    .footer a { color: var(--amber); text-decoration: none; }
+
+    /* ═══════════════════════════════
+       ANIMATIONS
+    ═══════════════════════════════ */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.vis {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ═══════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════ */
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .hero-content {
+        padding: 48px 24px 40px;
+        max-width: 100%;
+        margin: 0;
+        order: 2;
+      }
+
+      .hero h1 { font-size: 34px; }
+      .hero h1 em { font-size: 30px; }
+      .hero-sub { font-size: 16px; }
+      .hero-meta { gap: 16px; }
+
+      .hero-photo {
+        order: 1;
+        height: 360px;
+      }
+
+      .stats-strip { grid-template-columns: repeat(2, 1fr); }
+      .strip-stat { padding: 20px 16px; }
+      .strip-num { font-size: 28px; }
+
+      .section { padding: 56px 0; }
+      .sec-title { font-size: 26px; }
+
+      .track-card {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .track-letter {
+        width: 44px; height: 44px;
+        font-size: 22px;
+        border-radius: 10px;
+      }
+
+      .pricing-amount { font-size: 60px; }
+      .pricing-body { padding: 36px 24px; }
+      .pricing-cta { margin: 24px 24px 0; }
+      .pricing-footer { padding: 0 24px 24px; }
+
+      .form-card { padding: 32px 20px; }
+
+      .countdown-bar { font-size: 12px; gap: 8px; flex-wrap: wrap; }
+      .cd-cta { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 28px; }
+      .hero h1 em { font-size: 26px; }
+      .pricing-amount { font-size: 48px; }
+      .hero-photo { height: 280px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- COUNTDOWN -->
+  <div class="countdown-bar" id="countdownBar">
+    <span>早鳥優惠 4/6 截止</span>
+    <div class="cd-timer">
+      <span class="cd-unit" id="cd-d">0</span><span class="cd-colon">:</span>
+      <span class="cd-unit" id="cd-h">00</span><span class="cd-colon">:</span>
+      <span class="cd-unit" id="cd-m">00</span><span class="cd-colon">:</span>
+      <span class="cd-unit" id="cd-s">00</span>
+    </div>
+    <a href="#register" class="cd-cta">立即報名</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">限額 20 名 &middot; 5/9 台北</div>
+      <h1>新媒體<br>商業獲利學<br><em>Profit System</em></h1>
+      <p class="hero-sub">不會賣的人，反而賣得最好。<br>用 80% 的時間給值陪伴，20% 自然成交。</p>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <div class="hm-icon">&#128197;</div>
+          <div class="hm-text">
+            <strong>2026 / 5 / 9</strong>
+            <span>Friday</span>
+          </div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="hm-icon">&#128205;</div>
+          <div class="hm-text">
+            <strong>台北</strong>
+            <span>報名後通知地點</span>
+          </div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="hm-icon">&#9201;</div>
+          <div class="hm-text">
+            <strong>一日實戰</strong>
+            <span>帶走完整系統</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="zhu-profile.jpg" alt="小朱">
+      <div class="hero-photo-overlay">
+        <div class="hero-photo-name">小朱</div>
+        <div class="hero-photo-role">32 歲 &middot; 連續創業家 &middot; 七間門市創辦人</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-strip">
+    <div class="strip-stat">
+      <div class="strip-num">7</div>
+      <div class="strip-label">實體門市</div>
+    </div>
+    <div class="strip-stat">
+      <div class="strip-num">2.4K+</div>
+      <div class="strip-label">私域社群</div>
+    </div>
+    <div class="strip-stat">
+      <div class="strip-num">$30W</div>
+      <div class="strip-label">單場直播成交</div>
+    </div>
+    <div class="strip-stat">
+      <div class="strip-num">1</div>
+      <div class="strip-label">化學工廠</div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- BIO -->
+    <section class="section reveal">
+      <p class="sec-eyebrow">ABOUT</p>
+      <p class="sec-desc" style="max-width:540px;">
+        不是富二代，第一間店靠存款 15&ndash;20 萬加信貸白手起家。從餐飲品牌「六扇門」到自創品牌「ZHU-WAX」，用新媒體把線下生意搬到線上，建立可複製的商業系統。一次直播 6 小時，10 分鐘成交 30 萬。
+      </p>
+    </section>
+
+    <!-- TRACKS -->
+    <section class="section reveal">
+      <p class="sec-eyebrow">CURRICULUM</p>
+      <h2 class="sec-title">三種路線，一天帶走</h2>
+      <p class="sec-desc">不管你現在什麼階段，小朱都有對應的系統給你。</p>
+      <div class="tracks-grid">
+        <div class="track-card">
+          <div class="track-letter">A</div>
+          <div class="track-body">
+            <p class="tag">有產品的你</p>
+            <h4>重新設計產品 + 低流量高轉化</h4>
+            <p>產品定位、痛點精準化、信任經營策略，讓好產品被對的人看見。</p>
+          </div>
+        </div>
+        <div class="track-card">
+          <div class="track-letter">B</div>
+          <div class="track-body">
+            <p class="tag">有店面的你</p>
+            <h4>線下轉線上，私域 + 信任系統</h4>
+            <p>用 LINE、IG、TikTok 打通線上通路，不靠廣告也能持續獲客。</p>
+          </div>
+        </div>
+        <div class="track-card">
+          <div class="track-letter">C</div>
+          <div class="track-body">
+            <p class="tag">想創業的你</p>
+            <h4>直接提供品牌，從零到一帶做</h4>
+            <p>小朱提供已驗證品牌代理，門檻遠低於傳統加盟，有系統支撐。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="section reveal">
+      <p class="sec-eyebrow">PRICING</p>
+      <div class="pricing">
+        <div class="pricing-header">EARLY BIRD OFFER</div>
+        <div class="pricing-body">
+          <p class="pricing-old">原價 NT$36,800</p>
+          <div class="pricing-amount"><span class="cur">NT$</span>16,800</div>
+          <p class="pricing-sub">每月不到 $1,400 &middot; 一天完成</p>
+          <div class="pricing-pills">
+            <span class="pricing-pill">一對一規劃</span>
+            <span class="pricing-pill">面對面實戰</span>
+            <span class="pricing-pill">離開就能用</span>
+          </div>
+          <div class="spots-tag">限額 20 名，額滿即止</div>
+        </div>
+        <a href="#register" class="pricing-cta">立即報名</a>
+        <p class="pricing-footer" style="margin-top: 12px;">4/6（一）23:59 前報名享早鳥價</p>
+      </div>
+    </section>
+
+    <!-- FORM -->
+    <section class="section reveal" id="register">
+      <p class="sec-eyebrow">REGISTER</p>
+      <h2 class="sec-title">立即報名</h2>
+      <p class="sec-desc">填寫資料 + 完成匯款，即完成報名</p>
+
+      <div class="form-card" id="formSection">
+        <form id="regForm">
+          <div class="form-group">
+            <label>姓名 <span class="req">*</span></label>
+            <input type="text" name="name" required placeholder="你的真實姓名">
+          </div>
+          <div class="form-group">
+            <label>手機號碼 <span class="req">*</span></label>
+            <input type="tel" name="phone" required placeholder="0912-345-678">
+          </div>
+          <div class="form-group">
+            <label>Email <span class="req">*</span></label>
+            <input type="email" name="email" required placeholder="you@example.com">
+          </div>
+          <div class="form-group">
+            <label>LINE ID</label>
+            <input type="text" name="line_id" placeholder="方便後續聯繫（選填）">
+          </div>
+          <div class="form-group">
+            <label>你目前的狀況 <span class="req">*</span></label>
+            <select name="track" required>
+              <option value="" disabled selected>選擇最符合你的路線</option>
+              <option value="A — 有產品">A — 有產品，想學怎麼賣更好</option>
+              <option value="B — 有店面">B — 有店面，想從線下做到線上</option>
+              <option value="C — 想創業">C — 想創業，但還沒有產品</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>想透過這堂課解決什麼問題？</label>
+            <textarea name="goal" rows="3" placeholder="簡單描述你的現況和期待（選填）"></textarea>
+          </div>
+
+          <div class="form-sep">匯款資訊</div>
+
+          <div class="bank-box">
+            <div class="bank-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+              匯款帳戶
+            </div>
+            <div class="bank-row"><span class="bank-k">銀行</span><span class="bank-v">玉山銀行（808）</span></div>
+            <div class="bank-row"><span class="bank-k">分行</span><span class="bank-v">新豐分行</span></div>
+            <div class="bank-row"><span class="bank-k">戶名</span><span class="bank-v">朱浩瑋</span></div>
+            <div class="bank-row"><span class="bank-k">帳號</span><span class="bank-v">1126-979-178001</span></div>
+            <div class="bank-row"><span class="bank-k">金額</span><span class="bank-v">NT$16,800</span></div>
+            <p class="bank-hint">請先完成匯款，再填寫以下資訊送出報名</p>
+          </div>
+
+          <div class="form-group">
+            <label>匯款帳號末五碼 <span class="req">*</span></label>
+            <input type="text" name="transfer_last5" required placeholder="你匯款帳戶的末五碼" maxlength="5" pattern="[0-9]{5}" inputmode="numeric">
+          </div>
+          <div class="form-group">
+            <label>匯款日期 <span class="req">*</span></label>
+            <input type="date" name="transfer_date" required>
+          </div>
+
+          <button type="submit" class="submit-btn" id="submitBtn">確認送出報名</button>
+          <p class="form-note">送出後 24 小時內確認匯款並通知上課資訊</p>
+        </form>
+      </div>
+
+      <div class="success-panel" id="successMsg">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h2>報名成功</h2>
+        <p>我們已收到你的資料。<br>確認匯款後會透過 LINE 或電話通知你上課詳細資訊。</p>
+        <a class="line-btn" href="https://line.me/R/ti/p/@103ykrcr">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 5.81 2 10.5c0 2.94 1.95 5.5 4.87 7.08-.19.66-.68 2.42-.78 2.8-.13.48.17.47.37.34.15-.1 2.42-1.64 3.42-2.31.69.1 1.4.15 2.12.15 5.52 0 10-3.81 10-8.5S17.52 2 12 2z"/></svg>
+          加 LINE 傳「我已報名正課」
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>有問題？加 LINE <a href="https://line.me/R/ti/p/@103ykrcr">@103ykrcr</a></p>
+    <p style="margin-top:8px;">&copy; 2026 小朱 &middot; 新媒體商業獲利學</p>
+  </footer>
+
+  <script>
+    /* Countdown */
+    const DL = new Date('2026-04-06T23:59:59+08:00').getTime();
+    function tick() {
+      const d = DL - Date.now();
+      if (d <= 0) { document.getElementById('countdownBar').innerHTML = '<span style="padding:4px">早鳥優惠已截止</span>'; return; }
+      document.getElementById('cd-d').textContent = Math.floor(d/864e5);
+      document.getElementById('cd-h').textContent = String(Math.floor(d%864e5/36e5)).padStart(2,'0');
+      document.getElementById('cd-m').textContent = String(Math.floor(d%36e5/6e4)).padStart(2,'0');
+      document.getElementById('cd-s').textContent = String(Math.floor(d%6e4/1e3)).padStart(2,'0');
+    }
+    tick(); setInterval(tick, 1000);
+
+    /* Scroll reveal */
+    const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); } }), { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    /* Form */
+    document.getElementById('regForm').addEventListener('submit', async e => {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true; btn.textContent = '送出中...';
+
+      const data = Object.fromEntries(new FormData(e.target).entries());
+      try {
+        const res = await fetch('/api/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        const json = await res.json();
+        if (json.success) {
+          document.getElementById('formSection').style.display = 'none';
+          document.getElementById('successMsg').classList.add('show');
+          document.getElementById('successMsg').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          throw new Error(json.error);
+        }
+      } catch (err) {
+        alert(err.message || '送出失敗，請直接加 LINE @103ykrcr 報名');
+        btn.disabled = false; btn.textContent = '確認送出報名';
+      }
+    });
+  </script>
+
+</body>
+</html>
